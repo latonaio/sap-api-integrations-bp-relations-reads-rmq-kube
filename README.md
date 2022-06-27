@@ -12,10 +12,43 @@ sap-api-integrations-bp-relations-reads-rmq-kubeは、主にエッジコンピ�
 ・ エッジ Kubernetes （推奨）    
 ・ AION のリソース （推奨)    
 ・ OS: LinuxOS （必須）    
-・ CPU: ARM/AMD/Intel（いずれか必須） 
+・ CPU: ARM/AMD/Intel（いずれか必須）  
+・ RabbitMQ on Kubernetes  
+・ RabbitMQ Client  
 
 ## クラウド環境での利用  
 sap-api-integrations-bp-relations-reads-rmq-kubeは、外部システムがクラウド環境である場合にSAPと統合するときにおいても、利用可能なように設計されています。  
+
+## RabbitMQ からの JSON Input
+
+sap-api-integrations-bp-relations-reads-rmq-kube は、Inputとして、RabbitMQ からのメッセージをJSON形式で受け取ります。 
+Input の サンプルJSON は、Inputs フォルダ内にあります。  
+
+## RabbitMQ からのメッセージ受信による イベントドリヴン の ランタイム実行
+
+sap-api-integrations-bp-relations-reads-rmq-kube は、RabbitMQ からのメッセージを受け取ると、イベントドリヴンでランタイムを実行します。  
+AION の仕様では、Kubernetes 上 の 当該マイクロサービスPod は 立ち上がったまま待機状態で当該メッセージを受け取り、（コンテナ起動などの段取時間をカットして）即座にランタイムを実行します。　
+
+## RabbitMQ への JSON Output
+
+sap-api-integrations-bp-relations-reads-rmq-kube は、Outputとして、RabbitMQ へのメッセージをJSON形式で出力します。  
+Output の サンプルJSON は、Outputs フォルダ内にあります。  
+
+## RabbitMQ の マスタサーバ環境
+
+sap-api-integrations-bp-relations-reads-rmq-kube が利用する RabbitMQ のマスタサーバ環境は、[rabbitmq-on-kubernetes](https://github.com/latonaio/rabbitmq-on-kubernetes) です。  
+当該マスタサーバ環境は、同じエッジコンピューティングデバイスに配置されても、別の物理(仮想)サーバ内に配置されても、どちらでも構いません。
+
+## RabbitMQ の Golang Runtime ライブラリ
+sap-api-integrations-bp-relations-reads-rmq-kube は、RabbitMQ の Golang Runtime ライブラリ として、[rabbitmq-golang-client](https://github.com/latonaio/rabbitmq-golang-client)を利用しています。
+
+## デプロイ・稼働
+sap-api-integrations-bp-relations-reads-rmq-kube の デプロイ・稼働 を行うためには、aion-service-definitions の services.yml に、本レポジトリの services.yml を設定する必要があります。
+
+kubectl apply - f 等で Deployment作成後、以下のコマンドで Pod が正しく生成されていることを確認してください。
+```
+$ kubectl get pods
+```
 
 ## 本レポジトリ が 対応する API サービス
 sap-api-integrations-bp-relations-reads-rmq-kubeが対応する APIサービス は、次のものです。
