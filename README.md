@@ -1,9 +1,7 @@
 # sap-api-integrations-bp-relations-reads-rmq-kube
 sap-api-integrations-bp-relations-reads-rmq-kubeは、外部システム(特にエッジコンピューティング環境)をSAPと統合することを目的に、SAP API ビジネスパートナ関係を取得するマイクロサービスです。  
 sap-api-integrations-bp-relations-reads-rmq-kubeには、サンプルのAPI Json フォーマットが含まれています。  
-sap-api-integrations-bp-relations-reads-rmq-kube
-
- は、オンプレミス版である（＝クラウド版ではない）SAPC4HANA API の利用を前提としています。クラウド版APIを利用する場合は、ご注意ください。  
+sap-api-integrations-bp-relations-reads-rmq-kubeは、オンプレミス版である（＝クラウド版ではない）SAPC4HANA API の利用を前提としています。クラウド版APIを利用する場合は、ご注意ください。  
 https://api.sap.com/api/businesspartnerrelationship/overview    
 
 ## 動作環境
